@@ -1,0 +1,266 @@
+
+ <!DOCTYPE html>
+ <html>
+ <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Expense Manager | Budget</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="font/VarelaRound-Regular.ttf" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" ></script>
+    <script src="js/Chart.js"></script>
+    
+    <style>
+        .body .nav .div{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .container1 {
+            width: 460px;
+            height: 350px;
+        }
+
+        .container-section {
+            padding: 30px;
+        }
+
+        .card {
+            width: 500px;
+            height: 650px;
+        }
+
+        .section {
+            width:100%;
+            height: 100px;
+            text-align: center;
+        }
+
+        .margin-btn-mim {
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
+        .active-mim {
+            margin-top:20px;
+            color: #fff;
+            background-color: orangered;
+            transition: 0.5s;
+            border-color: orangered;
+        }
+
+        hr {
+            height:3px;
+            border:none;
+            color:orange;
+            background-color:orange;
+        }
+
+        .td {
+            width: auto;
+        }
+
+        .image-mim {
+            transform: scale(0.8, 0.8);
+            transition: 0.5s;
+        }
+
+        .image-mim:hover {
+            transform: scale(1, 1);
+            transition: 0.5s;
+        }
+
+    </style>
+ </head>
+ <body style="background-color: black;">
+<nav class="navbar navbar-light" style="background-color: orangered;">
+    <form action="main0" method="GET">
+        <button type="submit" class="btn btn-dark my-2 my-sm-0" style="background-color: transparent;border-width: 0px;" >Expense<br>Manager</button>
+    </form>
+    <form class="form-inline">
+        <button class="btn btn-dark my-2 my-sm-0" type="submit">Logout</button>
+    </form>
+</nav>  
+<div class="section">
+    <div class="container-section text-center">
+            <button  id="today" onclick="TODAY()" class="btn btn-outline-light my-2 my-sm-0 margin-btn-mim" >Today</button>
+            <button  id="week" onclick="WEEK()" class="btn btn-outline-light my-2 my-sm-0 margin-btn-mim" >Week</button>
+            <button  id="lifetime" onclick="LIFETIME()" class="active-mim btn btn-outline-light my-2 my-sm-0 margin-btn-mim">Lifetime</button>
+            <button  id="month" onclick="MONTH()" class="btn btn-outline-light my-2 my-sm-0 margin-btn-mim" >Month</button>
+            <button  id="year" onclick="YEAR()" class="btn btn-outline-light my-2 my-sm-0 margin-btn-mim" >Year</button>
+    </div>
+</div>  
+
+<div class="row justify-content-center">
+    <div class="col-lg-8 card" style="margin:20px; height: auto;">
+        <div class="container">
+                <div class="row" style="margin-top:10px">
+                    <div class="col-sm-10">
+                            <h1 style="color: #005fdd;">Budget</h1>
+                    </div>
+                    <div class="col-sm-2">
+                        <img  class="image-mim" data-toggle="modal" data-target="#budget" width="45px" height="45px" style="cursor: pointer; margin-top:8px; margin-right:0px;" src="assets/plus-blue.svg">
+                    </div>
+                </div>
+                <hr> 
+                <table class="table table-hover" id="myTable">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Progress</th>
+                            <th scope="col">Expire Date</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                        </thead>
+                        <tbody id="data">
+                        <tr>
+                            <td>Entertainment</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                        -₹ 1200
+                                    </div>
+                                </div>
+                            </td>
+                            <td>19 Nov 2019</td>
+                            <td><span class="badge badge-danger">Exceeded</span></td>
+                        </tr>
+                        <tr>
+                            <td>Groceries</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
+                                        + ₹90000 
+                                    </div>
+                                </div>
+                            </td>
+                            <td>01 Apr 2020</td>
+                            <td><span class="badge badge-success">On Budget</span></td>
+                            </tr>                                                                                                                                                                      
+                    </tbody>
+                </table> 
+                <hr>   
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="budget" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: blue; color:white">
+                <h5 class="modal-title" id="exampleModalLabel">Add Budget</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Category :</label><br>
+                        <select name="category" placeholder="Select" class="btn btn-primary dropdown-toggle" value="" required>
+                            <option value="Groceries">Salary</option>
+                            <option value="Bills">Bonus</option>
+                            <option value="Education">Passive Income</option>
+                            <option value="Entertainment">Prizes</option>
+                            <option value="Travel">Sales</option>
+                            <option value="Medical">Medical</option>
+                            <option value="Utilities">Utilities</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Amount:</label>
+                        <input type="number" class="form-control" name="amount" placeholder="Enter the Amount">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Deadline</label>
+                        <input type="date" class="form-control" name="date" placeholder="Enter the Date">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" style="background-color: blue;">Add Budget</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
+
+        var today = document.getElementById('today')
+        var week = document.getElementById('week')
+        var month = document.getElementById('month')
+        var year = document.getElementById('year')
+        var lifetime = document.getElementById('lifetime')
+
+        function addData(chart, data) {
+            console.log(chart.data)
+            chart.data.datasets[0].data = data
+            chart.update();
+        }
+        
+        function LIFETIME() {
+            today.classList.remove("active-mim");
+            week.classList.remove("active-mim");
+            month.classList.remove("active-mim");
+            year.classList.remove("active-mim");
+            lifetime.classList.add("active-mim");
+            addData(myPieChartE,lifetimeE);
+            addData(myPieChartI,lifetimeI);
+
+        }
+        function YEAR() {
+            today.classList.remove("active-mim");
+            week.classList.remove("active-mim");
+            month.classList.remove("active-mim");
+            year.classList.add("active-mim");
+            lifetime.classList.remove("active-mim");
+            addData(myPieChartE,yearE);
+            addData(myPieChartI,yearI);
+        }
+        function MONTH() {
+            today.classList.remove("active-mim");
+            week.classList.remove("active-mim");
+            month.classList.add("active-mim");
+            year.classList.remove("active-mim");
+            lifetime.classList.remove("active-mim");
+            addData(myPieChartE,monthE);
+            addData(myPieChartI,monthI);
+        }
+        function WEEK() {
+            today.classList.remove("active-mim");
+            week.classList.add("active-mim");
+            month.classList.remove("active-mim");
+            year.classList.remove("active-mim");
+            lifetime.classList.remove("active-mim");
+            addData(myPieChartE,weekE);
+            addData(myPieChartI,weekI);
+        }
+        function TODAY() {
+            today.classList.add("active-mim");
+            week.classList.remove("active-mim");
+            month.classList.remove("active-mim");
+            year.classList.remove("active-mim");
+            lifetime.classList.remove("active-mim");
+            addData(myPieChartE,todayE);
+            addData(myPieChartI,todayI);
+        }
+
+
+</script>
+</body>
+</html>

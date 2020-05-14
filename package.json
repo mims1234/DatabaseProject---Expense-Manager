@@ -1,0 +1,28 @@
+{
+  "name": "dbms1",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "dotenv": "^8.1.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-fileupload": "^0.4.0",
+    "express-session": "^1.16.2",
+    "moment": "^2.24.0",
+    "mysql": "^2.15.0",
+    "node-mysql": "^0.4.2",
+    "nodemon": "^1.19.4",
+    "number-formatter": "^1.2.0",
+    "req-flash": "0.0.3"
+  },
+  "devDependencies": {},
+  "description": ""
+}

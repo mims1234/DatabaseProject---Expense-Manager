@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Expense Manager | Home</title>
+    <!-- Bootstrap core CSS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" ></script>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/svghome.css" rel="stylesheet">
+    <link href="font/VarelaRound-Regular.ttf" rel="stylesheet">
+</head>
+
+<body>
+    <% if(status === "1") {%>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Incorrect <strong>Username</strong> and <strong>Password</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+    </div>
+    <%}%>
+    <% if(status === "2") {%>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Username</strong> Exist !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+    <%}%>
+    <% if(status === "3") {%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Account</strong> Created !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+    <%}%>
+    <% if(status === "4") {%>
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                <strong>Logged</strong> Out !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+    <%}%>
+    <svg id="logo" width="1114" height="99" viewBox="0 0 1114 99" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <mask id="path-1-outside-1" maskUnits="userSpaceOnUse" x="0.902344" y="0.515625" width="1113" height="98" fill="black">
+        <rect fill="white" x="0.902344" y="0.515625" width="1113" height="98"/>
+        <path d="M54.125 52.5664H17.1523V82.8008H60.1016V92H5.90234V6.6875H59.5156V15.9453H17.1523V43.3672H54.125V52.5664Z"/>
+        <path d="M101.938 39.3828L122.387 6.6875H135.629L108.676 48.9922L136.273 92H122.914L101.938 58.7188L80.8438 92H67.543L95.1992 48.9922L68.1875 6.6875H81.3711L101.938 39.3828Z"/>
+        <path d="M160.59 58.6016V92H149.34V6.6875H180.805C190.141 6.6875 197.445 9.07031 202.719 13.8359C208.031 18.6016 210.688 24.9102 210.688 32.7617C210.688 41.043 208.09 47.4297 202.895 51.9219C197.738 56.375 190.336 58.6016 180.688 58.6016H160.59ZM160.59 49.4023H180.805C186.82 49.4023 191.43 47.9961 194.633 45.1836C197.836 42.332 199.438 38.2305 199.438 32.8789C199.438 27.8008 197.836 23.7383 194.633 20.6914C191.43 17.6445 187.035 16.0625 181.449 15.9453H160.59V49.4023Z"/>
+        <path d="M273.266 52.5664H236.293V82.8008H279.242V92H225.043V6.6875H278.656V15.9453H236.293V43.3672H273.266V52.5664Z"/>
+        <path d="M358.812 92H347.504L304.555 26.2578V92H293.246V6.6875H304.555L347.621 72.7227V6.6875H358.812V92Z"/>
+        <path d="M403.93 53.9727C394.281 51.1992 387.25 47.8008 382.836 43.7773C378.461 39.7148 376.273 34.7148 376.273 28.7773C376.273 22.0586 378.949 16.5117 384.301 12.1367C389.691 7.72266 396.684 5.51562 405.277 5.51562C411.137 5.51562 416.352 6.64844 420.922 8.91406C425.531 11.1797 429.086 14.3047 431.586 18.2891C434.125 22.2734 435.395 26.6289 435.395 31.3555H424.086C424.086 26.1992 422.445 22.1562 419.164 19.2266C415.883 16.2578 411.254 14.7734 405.277 14.7734C399.73 14.7734 395.395 16.0039 392.27 18.4648C389.184 20.8867 387.641 24.2656 387.641 28.6016C387.641 32.0781 389.105 35.0273 392.035 37.4492C395.004 39.832 400.023 42.0195 407.094 44.0117C414.203 46.0039 419.75 48.2109 423.734 50.6328C427.758 53.0156 430.727 55.8086 432.641 59.0117C434.594 62.2148 435.57 65.9844 435.57 70.3203C435.57 77.2344 432.875 82.7812 427.484 86.9609C422.094 91.1016 414.887 93.1719 405.863 93.1719C400.004 93.1719 394.535 92.0586 389.457 89.832C384.379 87.5664 380.453 84.4805 377.68 80.5742C374.945 76.668 373.578 72.2344 373.578 67.2734H384.887C384.887 72.4297 386.781 76.5117 390.57 79.5195C394.398 82.4883 399.496 83.9727 405.863 83.9727C411.801 83.9727 416.352 82.7617 419.516 80.3398C422.68 77.918 424.262 74.6172 424.262 70.4375C424.262 66.2578 422.797 63.0352 419.867 60.7695C416.938 58.4648 411.625 56.1992 403.93 53.9727Z"/>
+        <path d="M498.266 52.5664H461.293V82.8008H504.242V92H450.043V6.6875H503.656V15.9453H461.293V43.3672H498.266V52.5664Z"/>
+        <path d="M562.543 6.6875L590.434 76.2969L618.324 6.6875H632.914V92H621.664V58.7773L622.719 22.918L594.711 92H586.098L558.148 23.0938L559.262 58.7773V92H548.012V6.6875H562.543Z"/>
+        <path d="M700.941 69.7344H665.199L657.172 92H645.57L678.148 6.6875H687.992L720.629 92H709.086L700.941 69.7344ZM668.598 60.4766H697.602L683.07 20.5742L668.598 60.4766Z"/>
+        <path d="M797.68 92H786.371L743.422 26.2578V92H732.113V6.6875H743.422L786.488 72.7227V6.6875H797.68V92Z"/>
+        <path d="M865.824 69.7344H830.082L822.055 92H810.453L843.031 6.6875H852.875L885.512 92H873.969L865.824 69.7344ZM833.48 60.4766H862.484L847.953 20.5742L833.48 60.4766Z"/>
+        <path d="M959.281 80.8086C956.391 84.9492 952.348 88.0547 947.152 90.125C941.996 92.1562 935.98 93.1719 929.105 93.1719C922.152 93.1719 915.98 91.5508 910.59 88.3086C905.199 85.0273 901.02 80.3789 898.051 74.3633C895.121 68.3477 893.617 61.375 893.539 53.4453V46.0039C893.539 33.1523 896.527 23.1914 902.504 16.1211C908.52 9.05078 916.957 5.51562 927.816 5.51562C936.723 5.51562 943.891 7.80078 949.32 12.3711C954.75 16.9023 958.07 23.3477 959.281 31.707H948.031C945.922 20.418 939.203 14.7734 927.875 14.7734C920.336 14.7734 914.613 17.4297 910.707 22.7422C906.84 28.0156 904.887 35.6719 904.848 45.7109V52.6836C904.848 62.2539 907.035 69.8711 911.41 75.5352C915.785 81.1602 921.703 83.9727 929.164 83.9727C933.383 83.9727 937.074 83.5039 940.238 82.5664C943.402 81.6289 946.02 80.0469 948.09 77.8203V58.6602H928.344V49.5195H959.281V80.8086Z"/>
+        <path d="M1026.31 52.5664H989.34V82.8008H1032.29V92H978.09V6.6875H1031.7V15.9453H989.34V43.3672H1026.31V52.5664Z"/>
+        <path d="M1077.58 57.4883H1057.54V92H1046.23V6.6875H1074.48C1084.09 6.6875 1091.47 8.875 1096.62 13.25C1101.82 17.625 1104.42 23.9922 1104.42 32.3516C1104.42 37.6641 1102.97 42.293 1100.08 46.2383C1097.23 50.1836 1093.25 53.1328 1088.13 55.0859L1108.17 91.2969V92H1096.1L1077.58 57.4883ZM1057.54 48.2891H1074.83C1080.41 48.2891 1084.85 46.8438 1088.13 43.9531C1091.45 41.0625 1093.11 37.1953 1093.11 32.3516C1093.11 27.0781 1091.53 23.0352 1088.36 20.2227C1085.24 17.4102 1080.71 15.9844 1074.77 15.9453H1057.54V48.2891Z"/>
+        </mask>
+        <path d="M54.125 52.5664H17.1523V82.8008H60.1016V92H5.90234V6.6875H59.5156V15.9453H17.1523V43.3672H54.125V52.5664Z" stroke="white" stroke-width="10" stroke-linejoin="miter" mask="url(#path-1-outside-1)"/>
+        <path d="M101.938 39.3828L122.387 6.6875H135.629L108.676 48.9922L136.273 92H122.914L101.938 58.7188L80.8438 92H67.543L95.1992 48.9922L68.1875 6.6875H81.3711L101.938 39.3828Z" stroke="white" stroke-width="10" stroke-linejoin="miter" mask="url(#path-1-outside-1)"/>
+        <path d="M160.59 58.6016V92H149.34V6.6875H180.805C190.141 6.6875 197.445 9.07031 202.719 13.8359C208.031 18.6016 210.688 24.9102 210.688 32.7617C210.688 41.043 208.09 47.4297 202.895 51.9219C197.738 56.375 190.336 58.6016 180.688 58.6016H160.59ZM160.59 49.4023H180.805C186.82 49.4023 191.43 47.9961 194.633 45.1836C197.836 42.332 199.438 38.2305 199.438 32.8789C199.438 27.8008 197.836 23.7383 194.633 20.6914C191.43 17.6445 187.035 16.0625 181.449 15.9453H160.59V49.4023Z" stroke="white" stroke-width="10" stroke-linejoin="miter" mask="url(#path-1-outside-1)"/>
+        <path d="M273.266 52.5664H236.293V82.8008H279.242V92H225.043V6.6875H278.656V15.9453H236.293V43.3672H273.266V52.5664Z" stroke="white" stroke-width="10" stroke-linejoin="miter" mask="url(#path-1-outside-1)"/>
+        <path d="M358.812 92H347.504L304.555 26.2578V92H293.246V6.6875H304.555L347.621 72.7227V6.6875H358.812V92Z" stroke="white" stroke-width="10" stroke-linejoin="miter" mask="url(#path-1-outside-1)"/>
+        <path d="M403.93 53.9727C394.281 51.1992 387.25 47.8008 382.836 43.7773C378.461 39.7148 376.273 34.7148 376.273 28.7773C376.273 22.0586 378.949 16.5117 384.301 12.1367C389.691 7.72266 396.684 5.51562 405.277 5.51562C411.137 5.51562 416.352 6.64844 420.922 8.91406C425.531 11.1797 429.086 14.3047 431.586 18.2891C434.125 22.2734 435.395 26.6289 435.395 31.3555H424.086C424.086 26.1992 422.445 22.1562 419.164 19.2266C415.883 16.2578 411.254 14.7734 405.277 14.7734C399.73 14.7734 395.395 16.0039 392.27 18.4648C389.184 20.8867 387.641 24.2656 387.641 28.6016C387.641 32.0781 389.105 35.0273 392.035 37.4492C395.004 39.832 400.023 42.0195 407.094 44.0117C414.203 46.0039 419.75 48.2109 423.734 50.6328C427.758 53.0156 430.727 55.8086 432.641 59.0117C434.594 62.2148 435.57 65.9844 435.57 70.3203C435.57 77.2344 432.875 82.7812 427.484 86.9609C422.094 91.1016 414.887 93.1719 405.863 93.1719C400.004 93.1719 394.535 92.0586 389.457 89.832C384.379 87.5664 380.453 84.4805 377.68 80.5742C374.945 76.668 373.578 72.2344 373.578 67.2734H384.887C384.887 72.4297 386.781 76.5117 390.57 79.5195C394.398 82.4883 399.496 83.9727 405.863 83.9727C411.801 83.9727 416.352 82.7617 419.516 80.3398C422.68 77.918 424.262 74.6172 424.262 70.4375C424.262 66.2578 422.797 63.0352 419.867 60.7695C416.938 58.4648 411.625 56.1992 403.93 53.9727Z" stroke="white" stroke-width="10" stroke-linejoin="miter" mask="url(#path-1-outside-1)"/>
+        <path d="M498.266 52.5664H461.293V82.8008H504.242V92H450.043V6.6875H503.656V15.9453H461.293V43.3672H498.266V52.5664Z" stroke="white" stroke-width="10" stroke-linejoin="miter" mask="url(#path-1-outside-1)"/>
+        <path d="M562.543 6.6875L590.434 76.2969L618.324 6.6875H632.914V92H621.664V58.7773L622.719 22.918L594.711 92H586.098L558.148 23.0938L559.262 58.7773V92H548.012V6.6875H562.543Z" stroke="white" stroke-width="10" stroke-linejoin="miter" mask="url(#path-1-outside-1)"/>
+        <path d="M700.941 69.7344H665.199L657.172 92H645.57L678.148 6.6875H687.992L720.629 92H709.086L700.941 69.7344ZM668.598 60.4766H697.602L683.07 20.5742L668.598 60.4766Z" stroke="white" stroke-width="10" stroke-linejoin="miter" mask="url(#path-1-outside-1)"/>
+        <path d="M797.68 92H786.371L743.422 26.2578V92H732.113V6.6875H743.422L786.488 72.7227V6.6875H797.68V92Z" stroke="white" stroke-width="10" stroke-linejoin="miter" mask="url(#path-1-outside-1)"/>
+        <path d="M865.824 69.7344H830.082L822.055 92H810.453L843.031 6.6875H852.875L885.512 92H873.969L865.824 69.7344ZM833.48 60.4766H862.484L847.953 20.5742L833.48 60.4766Z" stroke="white" stroke-width="10" stroke-linejoin="miter" mask="url(#path-1-outside-1)"/>
+        <path d="M959.281 80.8086C956.391 84.9492 952.348 88.0547 947.152 90.125C941.996 92.1562 935.98 93.1719 929.105 93.1719C922.152 93.1719 915.98 91.5508 910.59 88.3086C905.199 85.0273 901.02 80.3789 898.051 74.3633C895.121 68.3477 893.617 61.375 893.539 53.4453V46.0039C893.539 33.1523 896.527 23.1914 902.504 16.1211C908.52 9.05078 916.957 5.51562 927.816 5.51562C936.723 5.51562 943.891 7.80078 949.32 12.3711C954.75 16.9023 958.07 23.3477 959.281 31.707H948.031C945.922 20.418 939.203 14.7734 927.875 14.7734C920.336 14.7734 914.613 17.4297 910.707 22.7422C906.84 28.0156 904.887 35.6719 904.848 45.7109V52.6836C904.848 62.2539 907.035 69.8711 911.41 75.5352C915.785 81.1602 921.703 83.9727 929.164 83.9727C933.383 83.9727 937.074 83.5039 940.238 82.5664C943.402 81.6289 946.02 80.0469 948.09 77.8203V58.6602H928.344V49.5195H959.281V80.8086Z" stroke="white" stroke-width="10" stroke-linejoin="miter" mask="url(#path-1-outside-1)"/>
+        <path d="M1026.31 52.5664H989.34V82.8008H1032.29V92H978.09V6.6875H1031.7V15.9453H989.34V43.3672H1026.31V52.5664Z" stroke="white" stroke-width="10" stroke-linejoin="miter" mask="url(#path-1-outside-1)"/>
+        <path d="M1077.58 57.4883H1057.54V92H1046.23V6.6875H1074.48C1084.09 6.6875 1091.47 8.875 1096.62 13.25C1101.82 17.625 1104.42 23.9922 1104.42 32.3516C1104.42 37.6641 1102.97 42.293 1100.08 46.2383C1097.23 50.1836 1093.25 53.1328 1088.13 55.0859L1108.17 91.2969V92H1096.1L1077.58 57.4883ZM1057.54 48.2891H1074.83C1080.41 48.2891 1084.85 46.8438 1088.13 43.9531C1091.45 41.0625 1093.11 37.1953 1093.11 32.3516C1093.11 27.0781 1091.53 23.0352 1088.36 20.2227C1085.24 17.4102 1080.71 15.9844 1074.77 15.9453H1057.54V48.2891Z" stroke="white" stroke-width="10" stroke-linejoin="miter" mask="url(#path-1-outside-1)"/>
+    </svg>
+
+    <button id="btn1" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModa2" data-whatever="@mdo">Sign UP</button>
+    <button id="btn2" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Sign IN</button>
+        
+    <div class="modal fade" id="exampleModa2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header" style="background-color: blue; color:white">
+                <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="authR" method="POST">
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Username:</label>
+                    <input type="text" class="form-control" name="username" placeholder="Enter your Username">
+                </div>
+                <div class="form-group">
+                    <label for="message-text" class="col-form-label">Password:</label>
+                    <input type="password" class="form-control" name="password" placeholder="Enter your Password">
+                </div>
+                <div class="form-group">
+                    <label for="message-text" class="col-form-label">Email:</label>
+                    <input type="email" class="form-control" name="email" placeholder="Enter your Email">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Sign IN</button>
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header" style="background-color: green; color:white">
+                <h5 class="modal-title" id="exampleModalLabel">Sign UP</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="authL" method="POST">
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Username:</label>
+                    <input type="text" class="form-control" value="" name="username" placeholder="Enter your Username">
+                </div>
+                <div class="form-group">
+                    <label for="message-text" class="col-form-label">Password:</label>
+                    <input type="password" class="form-control" value="" name="password" placeholder="Enter your Password">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Sign IN</button>
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+            
+</body>
+
+</html>

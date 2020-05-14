@@ -1,0 +1,54 @@
+COMPLEX 
+
+1. Retriving Expense INFO from Payment , Expense , Expense_Category Tables
+
+Ans:        SELECT E.Ename AS Name , E.Eamount AS Amount , P.Pname AS Payment , EC.ECname AS Sub_Category , E.Ecategory AS Category , E.EDOT AS DateEM 
+			FROM expense E , expense_category EC , payment_method P 
+			WHERE E.Euid= ${UserID} AND E.Epid = P.Pid AND E.Ecid = EC.ECid;
+
+2. Retriving Income INFO from Payment , Income , Income_Category Tables
+
+Ans:        SELECT I.Iname AS Name , I.Iamount AS Amount , P.Pname AS Payment , IC.ICname AS Sub_Category , I.Icategory AS Category , I.IDOT AS DateEM 
+			FROM income I , income_category IC , payment_method P 
+			WHERE I.Iuid= ${UserID} AND I.Ipid = P.Pid AND I.Icid = IC.ICid;
+
+SIMPLE
+
+1. Check for Login Credencials
+
+Ans: SELECT id FROM user_profile WHERE username = ? AND password = ?
+
+2. Retive Income Table Data filtered with Time and UserID
+
+Ans: SELECT Icategory AS Category, SUM(Itotal_amount) AS Amount FROM income WHERE IDOT > "${TTIME}" AND Iuid = ${UserID} GROUP BY (Icategory);
+
+3. Retive Expense Table Data filtered with Time and UserID
+
+Ans: SELECT Ecategory AS Category, SUM(Etotal_amount) AS Amount FROM expense WHERE EDOT > "${TTIME}" AND Euid = ${UserID} GROUP BY (Ecategory);
+
+STORAGE PROCEDURE
+
+1. Retirve Budget Table to display Active Budget Data
+
+CREATE PROCEDURE BUDGETQUERY (time date, userID int)
+SELECT Bname AS Name , LEAST(ROUND((BamountSpent/Bamount)*100),100) AS Percentage , (Bamount-BamountSpent) AS Remaining , BexpireDate AS ExpireDate 
+FROM budget 
+WHERE BexpireDate > time AND Buid = userID AND Bstatus = 0;
+
+Ans: CALL BUDGETQUERY("2019-10-20",1)
+
+TRIGGER
+
+1. Add's default categories to new uses registered
+
+DELIMITER $$
+CREATE TRIGGER NewReg AFTER INSERT
+ON user_profile
+FOR EACH ROW BEGIN
+    INSERT INTO edb.income_category(ICname,ICuid) VALUES ("Salary",NEW.id);
+	INSERT INTO edb.income_category(ICname,ICuid) VALUES ("Bonus",NEW.id);
+	INSERT INTO edb.income_category(ICname,ICuid) VALUES ("House-Rent",NEW.id);
+    INSERT INTO edb.expense_category(ECname,ECuid) VALUES ("Food",NEW.id);
+	INSERT INTO edb.expense_category(ECname,ECuid) VALUES ("Medicine",NEW.id);
+	INSERT INTO edb.expense_category(ECname,ECuid) VALUES ("Electronics",NEW.id);
+END $$
